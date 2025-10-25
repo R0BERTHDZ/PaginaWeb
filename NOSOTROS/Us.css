@@ -1,55 +1,346 @@
-*{
+/* =======================================================
+   ESTRUCTURA PRINCIPAL (CON STICKY FOOTER)
+========================================================== */
+
+/* Hacemos que la página ocupe el 100% de la altura */
+html {
+  height: 100%;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  background-color: #f2f2f2; /* gris claro */
+  
+  /* --- CLAVE PARA EL STICKY FOOTER --- */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ocupa al menos el 100% de la altura */
+}
+
+/* Hacemos que <main> crezca para empujar el footer hacia abajo */
+main {
+  /* --- CLAVE PARA EL STICKY FOOTER --- */
+  flex-grow: 1; /* <--- ESTA ES LA REGLA MÁGICA */
+
+  /* Estilos para el contenedor principal */
+  width: 90%;
+  margin: 0 auto;
+  background-color: white;
+  padding: 20px 0;
+}
+
+
+/* =======================================================
+   ESTILOS DE ESCRITORIO
+========================================================== */
+
+/* ENCABEZADO */
+.barra-superior {
+  background-color: #113b64;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+}
+
+.barra-superior img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+}
+
+.barra-superior h1 {
+  font-size: 28px;
+  margin: 0;
+  line-height: 1.1; /* Damos un poco de espacio */
+  text-align: center;
+}
+
+.barra-superior h1 span {
+  display: block; /* Mueve "LUNA" a la línea de abajo */
+  font-size: 0.85em; /* La hacemos un poco más pequeña */
+  color: #f5b301;
+}
+
+
+/* MENÚ */
+.menu ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  background-color: #e8e8e8;
+  padding: 20px 0;
+  margin: 0;
+}
+
+.menu li {
+  margin: 0 30px;
+  font-weight: 700;
+}
+
+.menu a {
+  text-decoration: none;
+  color: #113b64;
+  transition: color 0.3s ease, background-color 0.3s ease;
+  padding: 8px 15px;
+  border-radius: 5px;
+}
+
+.menu a:hover {
+  color: #113b64;
+  background-color: #f5b301;
+}
+
+/* BARRA DE TÍTULO "NOSOTROS" */
+.frase-conocenos {
+  text-align: left;
+  background-color: #3D5F85;
+}
+
+.frase-conocenos h2 {
+  color: white;
+  padding: 8px 0 8px 185px;
+  font-weight: 800;
+  font-size: 26px;
+  margin: 0;
+}
+
+/* =======================================================
+   NUEVOS ESTILOS PARA EL CONTENIDO DE "NOSOTROS"
+========================================================== */
+main section {
+  padding: 10px 40px; /* Añade espaciado */
+  margin: 20px auto;
+  width: 80%; /* Centra el contenido */
+  box-sizing: border-box;
+}
+
+main h5 {
+  color: #113b64;
+  font-size: 22px;
+  border-bottom: 2px solid #f5b301; /* Línea de acento */
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+  text-transform: uppercase; /* Pone en mayúsculas (HISTORIA, MISIÓN...) */
+}
+
+main p {
+  color: #333;
+  font-size: 16px;
+  line-height: 1.6; /* Espacio entre líneas */
+  text-align: justify; /* Justificado */
+}
+/* ======================================================= */
+
+
+/* TEXTO FINAL (DENTRO DE MAIN) */
+.mensaje-final {
+  text-align: center;
+  color: #113b64;
+  font-weight: 700;
+  margin: 30px auto;
+}
+
+/* FOOTER (AHORA FUERA DE MAIN) */
+.frase-final {
+  text-align: center;
+  background-color: #113b64;
+  color: white;
+  font-weight: 800;
+  padding: 20px 0;
+  font-size: 20px;
+}
+  div1{
+    background-color: #f5b301;
+    color: #113b64;
+    padding: 2px 35px 2px 35px;
+  }
+
+
+/* ============================================================
+   ESTILOS PARA MÓVIL (MEDIA QUERY)
+============================================================
+*/
+
+/* --- Estilos para el Menú Hamburguesa (ocultos en PC) --- */
+.hamburger-toggle {
+  display: none;
+}
+.hamburger-button {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 30px;
+  cursor: pointer;
+  z-index: 1001; 
+}
+.header-title-group {
+  display: contents; 
+}
+
+
+/* --- Media Query: Estilos que se activan SÓLO en pantallas pequeñas --- */
+@media (max-width: 768px) {
+
+  /* --- HEADER Y MENÚ --- */
+  .barra-superior {
+    padding: 15px 20px;
+    position: relative; 
+    min-height: 40px; 
+    display: flex;
+    align-items: center;
+  }
+
+  .barra-superior .logo-mini { 
+    display: block; 
+  }
+  .barra-superior img { 
+    width: 40px; 
+    height: 40px;
+  }
+  
+  /* Título Centrado */
+  .header-title-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: absolute; 
+    left: 50%;
+    transform: translateX(-50%); 
+    z-index: 1000;
+  }
+
+  .barra-superior h1 {
+    font-size: 20px; 
+    margin: 0; 
+    line-height: 1; /* Reseteamos el line-height */
+    text-align: left; /* Lo regresamos a la izquierda (dentro del flex group) */
+  }
+  .barra-superior h1 span {
+    display: inline; /* <-- CLAVE: "LUNA" regresa a la misma línea */
+    font-size: 1em;  /* <-- CLAVE: Resetea el tamaño */
+    color: #f5b301
+  }
+
+  /* Hamburguesa a la DERECHA */
+  .hamburger-button {
+    display: block; 
+    position: absolute; 
+    right: 20px; 
+    top: 50%; 
+    transform: translateY(-50%);
+    z-index: 1001; 
+  }
+
+  /* (Estilos del menú desplegable) */
+  .menu {
+    display: none; 
+    position: absolute; 
+    top: 100%; 
+    left: 0;
+    width: 100%;
+    background-color: #113b64; 
+    z-index: 999;
+  }
+  .menu ul {
+    flex-direction: column;
+    padding: 0;
     margin: 0;
-}
-
-header{
-    line-height: 25px; /*Separacion entre renglones*/
-    background-color: #063a74;
-    color: #FFF;
+  }
+  .menu li {
+    margin: 0;
+    border-bottom: 1px solid #2a5a8a; 
+  }
+  .menu li:last-child {
+    border-bottom: none; 
+  }
+  .menu a {
+    display: block;
+    padding: 20px;
     text-align: center;
-    padding: 12px 0px 12px 0px; /*Espacio interno entre el contenido y el borde de un elemento*/
-    width: 100%; /*Ocupa el 100% del ancho de la pantalla*/
-}
-
-header h2{
-    color: #FFD520;
-    padding-top: 15px;
-}
-
-nav{
-    background-color: #3D5F85;
-    color: #FFF;
-    padding: 10px 0px 10px 45px;
-    width: 100%;
-}
-
-main{
-    line-height: 20px;
-}
-
-main section h5{
-    background-color: #FFD520;
-    color: #063a74;
-    margin: 20px 0px 10px 0px;
-    padding: 7px 0 7px 80px;
-    border-radius: 40px;
-    font-size: medium;
-}
+    color: white; 
+    border-radius: 0; 
+  }
+  .menu a:hover {
+    background-color: #f5b301;
+    color: #113b64;
+  }
+  .hamburger-toggle:checked ~ .menu {
+    display: block;
+  }
 
 
+  /* --- RE-ESTILOS DEL CONTENIDO --- */
+  
+  .frase-conocenos {
+    margin: 0; 
+    padding: 15px 20px;
+    background-color: #3D5F85; 
+    text-align: left;
+  }
+  .frase-conocenos h2 {
+    font-size: 18px;
+    margin: 0;
+    padding: 0; /* Reseteamos el padding de escritorio */
+    color: white;
+  }
 
-footer{
-    background-color: #063a74;
-    padding: 10px 0px 10px 0px;
-    width: 100%;
+  /* Contenedor principal en móvil */
+  main {
+    width: 100%; 
+    padding: 0;
+    margin: 0;
+    display: block; /* Lo regresamos a bloque normal */
+  }
+
+  /* --- NUEVOS ESTILOS DE "NOSOTROS" PARA MÓVIL --- */
+  main section {
+    flex-basis: 100%; /* Ocupa todo el ancho */
+    padding: 15px 20px; /* Menos padding */
+    margin: 10px 0 0 0; /* Menos margen */
+    width: auto; /* Resetea el ancho de escritorio */
+  }
+  main h5 {
+    font-size: 18px; /* Título más pequeño */
+  }
+  main p {
+    font-size: 14px; /* Texto más pequeño */
+    text-align: left; /* Justificado se ve mal en pantallas chicas */
+  }
+  /* --- FIN DE NUEVOS ESTILOS --- */
+
+
+  /* El contenido final ocupa el 100% de ancho */
+  .mensaje-final {
+    flex-basis: 100%; 
+     text-align: center;
+     color: #113b64;
+     font-weight: 700;
+     margin: 30px auto;
+     font-size: 14px;
+     padding: 0 15px; 
+  }
+
+  /* El footer (fuera de main) se ajusta */
+  .frase-final {
+    flex-basis: 100%;
     text-align: center;
-    color: #FFF;
-    font-size: bold;
-}
+    background-color: #113b64;
+    color: white;
+    font-weight: 800;
+    padding: 15px;
+    font-size: 18px;
+    line-height: 1.4; 
+  }
+  div1{
+    background-color: #f5b301;
+    color: #113b64;
+    padding: 2px 15px 2px 15px;
+  }
 
-footer p1{
-    background-color: #FFD520;
-    color:#063a74;
-    padding: 2px 30px 2px 30px;
-    border-radius: 5px; 
-}
+} /* --- FIN DEL @media query --- */

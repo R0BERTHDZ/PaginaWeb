@@ -1,52 +1,421 @@
-*{
+/* =======================================================
+   ESTRUCTURA PRINCIPAL (CON STICKY FOOTER)
+========================================================== */
+
+/* Hacemos que la página ocupe el 100% de la altura */
+html {
+  height: 100%;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  background-color: #f2f2f2; /* gris claro */
+  
+  /* --- CLAVE PARA EL STICKY FOOTER --- */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ocupa al menos el 100% de la altura */
+}
+
+/* Hacemos que <main> crezca para empujar el footer hacia abajo */
+main {
+  /* --- CLAVE PARA EL STICKY FOOTER --- */
+  flex-grow: 1; /* <--- ESTA ES LA REGLA MÁGICA */
+
+  /* Estilos para el contenedor principal. */
+  width: 90%;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+
+/* =======================================================
+   ESTILOS DE ESCRITORIO (Header y Navegación)
+========================================================== */
+
+/* ENCABEZADO */
+.barra-superior {
+  background-color: #113b64;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+}
+
+.barra-superior img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+}
+
+.barra-superior h1 {
+  font-size: 28px;
+  margin: 0;
+  line-height: 1.1; /* Damos un poco de espacio */
+  text-align: center;
+}
+
+.barra-superior h1 span {
+  display: block; /* Mueve "LUNA" a la línea de abajo */
+  font-size: 0.85em; /* La hacemos un poco más pequeña */
+  color: #f5b301;
+}
+
+
+/* MENÚ */
+.menu ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  background-color: #e8e8e8;
+  padding: 20px 0;
+  margin: 0;
+}
+
+.menu li {
+  margin: 0 30px;
+  font-weight: 700;
+}
+
+.menu a {
+  text-decoration: none;
+  color: #113b64;
+  transition: color 0.3s ease, background-color 0.3s ease;
+  padding: 8px 15px;
+  border-radius: 5px;
+}
+
+.menu a:hover {
+  color: #113b64;
+  background-color: #f5b301;
+}
+
+/* BARRA DE TÍTULO "PREGUNTAS FRECUENTES" */
+.frase-conocenos {
+  text-align: left;
+  background-color: #3D5F85;
+}
+
+.frase-conocenos h2 {
+  color: white;
+  padding: 8px 0 8px 185px;
+  font-weight: 800;
+  font-size: 26px;
+  margin: 0;
+}
+
+/* =======================================================
+   ESTILOS ESPECÍFICOS PARA PREGUNTAS FRECUENTES (FAQ - Acordeón)
+========================================================== */
+
+main.faq-container {
+    width: 90%; 
+    margin: 20px auto; 
+    padding: 0; 
+    background-color: transparent; 
+}
+
+.faq-item {
+    background-color: white;
+    margin-bottom: 15px; /* Espacio entre cada pregunta */
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden; 
+    
+    /* --- LÍNEA AMARILLA EN ESCRITORIO --- */
+    border: 1px solid #ddd; 
+    border-bottom: 5px solid #f5b301; 
+}
+
+/* Mantenemos un margen al final del último ítem */
+.faq-item:last-child {
+    margin-bottom: 20px; 
+}
+
+
+.faq-question {
+    background-color: white;
+    color: #113b64; 
+    cursor: pointer;
+    padding: 18px 25px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 17px;
+    font-weight: 700;
+    transition: background-color 0.3s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.faq-question:hover {
+    background-color: #f0f0f0;
+}
+
+/* Estilo para la pregunta activa */
+.faq-item.active .faq-question {
+    background-color: #e8e8e8;
+}
+
+/* Estilos de la flecha */
+.arrow-icon {
+    font-size: 20px;
+    color: #f5b301; 
+    margin-left: 10px;
+    transition: transform 0.4s ease; 
+}
+
+
+/* CONTENIDO DE LA RESPUESTA (OCULTO/DESPLEGABLE) */
+.faq-answer {
+    padding: 0 25px;
+    background-color: #f9f9f9;
+    max-height: 0; /* Oculta el contenido */
+    overflow: hidden; 
+    transition: max-height 0.4s ease-out; /* Animación de despliegue */
+}
+
+.faq-answer p {
+    color: #333;
+    font-size: 15px;
+    line-height: 1.6;
+    padding-top: 5px;
+    padding-bottom: 15px; 
     margin: 0;
+    text-align: justify;
 }
 
-header{
-    line-height: 25px; /*Separacion entre renglones*/
-    background-color: #063a74;
-    color: #FFF;
-    text-align: center;
-    padding: 12px 0px 12px 0px; /*Espacio interno entre el contenido y el borde de un elemento*/
-    width: 100%; /*Ocupa el 100% del ancho de la pantalla*/
+/* =======================================================
+   ESTILOS DEL FOOTER Y MENSAJE FINAL
+========================================================== */
 
+/* TEXTO FINAL (DENTRO DE MAIN) */
+.mensaje-final {
+  text-align: center;
+  color: #113b64;
+  font-weight: 700;
+  margin: 30px auto;
 }
 
-header h2{
-    color: #FFD520;
-    padding-top: 15px;
+/* FOOTER (AHORA FUERA DE MAIN) */
+.frase-final {
+  text-align: center;
+  background-color: #113b64;
+  color: white;
+  font-weight: 800;
+  padding: 20px 0;
+  font-size: 20px;
+}
+  div1{
+    background-color: #f5b301;
+    color: #113b64;
+    padding: 2px 35px 2px 35px;
+  }
+
+
+/* ============================================================
+   ESTILOS PARA MÓVIL (MEDIA QUERY)
+============================================================
+*/
+
+/* --- Estilos para el Menú Hamburguesa (ocultos en PC) --- */
+.hamburger-toggle {
+  display: none;
+}
+.hamburger-button {
+  display: none;
+  background: none;
+  border: none;
+  color: #f5b301;
+  font-size: 30px;
+  cursor: pointer;
+  z-index: 1001; 
+}
+.header-title-group {
+  display: contents; 
 }
 
-nav{
-    background-color: #3D5F85;
-    color: #FFF;
-    padding: 10px 0px 10px 45px;
+
+/* --- Media Query: Estilos que se activan SÓLO en pantallas pequeñas --- */
+@media (max-width: 768px) {
+
+  /* --- HEADER Y MENÚ --- */
+  .barra-superior {
+    padding: 15px 20px;
+    position: relative; 
+    min-height: 40px; 
+    display: flex;
+    align-items: center;
+  }
+
+  .barra-superior .logo-mini { 
+    display: block; 
+  }
+  .barra-superior img { 
+    width: 40px; 
+    height: 40px;
+  }
+  
+  /* Título Centrado */
+  .header-title-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: absolute; 
+    left: 50%;
+    transform: translateX(-50%); 
+    z-index: 1000;
+  }
+
+  .barra-superior h1 {
+    font-size: 20px; 
+    margin: 0; 
+    line-height: 1; 
+    text-align: left; 
+  }
+  .barra-superior h1 span {
+    display: inline; 
+    font-size: 1em; 
+    color: #f5b301
+  }
+
+  /* Hamburguesa a la DERECHA */
+  .hamburger-button {
+    display: block; 
+    position: absolute; 
+    right: 20px; 
+    top: 50%; 
+    transform: translateY(-50%);
+    z-index: 1001; 
+  }
+
+  /* (Estilos del menú desplegable) */
+  .menu {
+    display: none; 
+    position: absolute; 
+    top: 100%; 
+    left: 0;
     width: 100%;
-}
-
-section h6{
-    background-color: #CBCBCB;
-    color: #063a74;
-    line-height: 25px;
-    margin: 25px 10px 25px 10px;
-    border-radius: 20px;
-    padding: 10px 0 10px 50px;
-    font-size: larger;
-
-}
-
-footer{
-    background-color: #063a74;
-    padding: 10px 0px 10px 0px;
-    width: 100%;
+    background-color: #113b64; 
+    z-index: 999;
+  }
+  .menu ul {
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+  }
+  .menu li {
+    margin: 0;
+    border-bottom: 1px solid #2a5a8a; 
+  }
+  .menu li:last-child {
+    border-bottom: none; 
+  }
+  .menu a {
+    display: block;
+    padding: 20px;
     text-align: center;
-    color: #FFF;
-    font-size: bold;
-}
+    color: white; 
+    border-radius: 0; 
+  }
+  .menu a:hover {
+    background-color: #f5b301;
+    color: #113b64;
+  }
+  .hamburger-toggle:checked ~ .menu {
+    display: block;
+  }
 
-footer p1{
-    background-color: #FFD520;
-    color:#063a74;
-    padding: 2px 30px 2px 30px;
-    border-radius: 5px; 
-}
+
+  /* --- RE-ESTILOS DEL CONTENIDO --- */
+  
+  .frase-conocenos {
+    margin: 0; 
+    padding: 15px 20px;
+    background-color: #3D5F85; 
+    text-align: left;
+  }
+  .frase-conocenos h2 {
+    font-size: 18px;
+    margin: 0;
+    padding: 0; /* Reseteamos el padding de escritorio */
+    color: white;
+  }
+
+  /* Contenedor principal en móvil */
+  main {
+    width: 100%; 
+    padding: 0;
+    margin: 0;
+    display: block; 
+  }
+
+  /* Estilos específicos para FAQ en móvil */
+  main.faq-container {
+        width: 100%;
+        margin-top: 0;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+    
+    .faq-item {
+        margin-bottom: 10px;
+        /* --- LÍNEA AMARILLA EN MÓVIL --- */
+        border-bottom: 5px solid #f5b301;
+    }
+    .faq-item:last-child {
+        margin-bottom: 15px; 
+    }
+    
+    .faq-question {
+        padding: 15px 15px;
+        font-size: 15px;
+    }
+    
+    .faq-answer {
+        padding: 0 15px;
+    }
+    
+    .faq-answer p {
+        font-size: 13px;
+        padding-bottom: 10px;
+        text-align: left;
+    }
+    /* FIN de Estilos específicos para FAQ en móvil */
+
+
+  /* El contenido final ocupa el 100% de ancho */
+  .mensaje-final {
+    flex-basis: 100%; 
+     text-align: center;
+     color: #113b64;
+     font-weight: 700;
+     margin: 30px auto;
+     font-size: 14px;
+     padding: 0 15px; 
+  }
+
+  /* El footer (fuera de main) se ajusta */
+  .frase-final {
+    flex-basis: 100%;
+    text-align: center;
+    background-color: #113b64;
+    color: white;
+    font-weight: 800;
+    padding: 15px;
+    font-size: 18px;
+    line-height: 1.4; 
+  }
+  div1{
+    background-color: #f5b301;
+    color: #113b64;
+    padding: 2px 15px 2px 15px;
+  }
+
+} /* --- FIN DEL @media query --- */

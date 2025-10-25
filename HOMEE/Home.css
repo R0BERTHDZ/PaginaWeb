@@ -1,9 +1,39 @@
-/* ESTOS SON TUS ESTILOS ORIGINALES (PARA ESCRITORIO) */
+/* =======================================================
+   ESTRUCTURA PRINCIPAL (CON STICKY FOOTER)
+========================================================== */
+
+/* Hacemos que la página ocupe el 100% de la altura */
+html {
+  height: 100%;
+}
+
 body {
   font-family: Arial, Helvetica, sans-serif;
   margin: 0;
   background-color: #f2f2f2; /* gris claro */
+  
+  /* --- CLAVE PARA EL STICKY FOOTER --- */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ocupa al menos el 100% de la altura */
 }
+
+/* Hacemos que <main> crezca para empujar el footer hacia abajo */
+main {
+  /* --- CLAVE PARA EL STICKY FOOTER --- */
+  flex-grow: 1; /* <--- ESTA ES LA REGLA MÁGICA */
+
+  /* Tus estilos originales de main */
+  width: 90%;
+  margin: 0 auto;
+  background-color: white;
+  padding: 20px 0;
+}
+
+
+/* =======================================================
+   ESTILOS DE ESCRITORIO (TUS ESTILOS ORIGINALES)
+========================================================== */
 
 /* ENCABEZADO */
 .barra-superior {
@@ -23,14 +53,21 @@ body {
   border: 2px solid #fff;
 }
 
+/* **** MODIFICADO: "LUNA" ABAJO EN DESKTOP **** */
 .barra-superior h1 {
   font-size: 28px;
   margin: 0;
+  line-height: 1.1; /* Damos un poco de espacio */
+  text-align: center;
 }
 
-.barra-superior span {
+/* **** NUEVO: "LUNA" ABAJO EN DESKTOP **** */
+.barra-superior h1 span {
+  display: block; /* Mueve "LUNA" a la línea de abajo */
+  font-size: 0.85em; /* La hacemos un poco más pequeña */
   color: #f5b301;
 }
+
 
 /* MENÚ */
 .menu ul {
@@ -47,7 +84,6 @@ body {
   font-weight: 700;
 }
 
-/* ENLACES DEL MENÚ */
 .menu a {
   text-decoration: none;
   color: #113b64;
@@ -56,31 +92,23 @@ body {
   border-radius: 5px;
 }
 
-/* Cambia color al pasar el cursor */
 .menu a:hover {
   color: #113b64;
-  background-color: #f5b301; /* Azul al pasar el mouse */
+  background-color: #f5b301;
 }
 
 /* FRASE DE “¿YA NOS CONOCES?” */
 .frase-conocenos {
   text-align: left;
-  margin: 25px 0 10px 205px;
+  background-color: #3D5F85;
 }
 
 .frase-conocenos h2 {
-  color: #113b64;
+  color: white;
+  padding: 8px 0 8px 185px;
   font-weight: 800;
   font-size: 26px;
   margin: 0;
-}
-
-/* CONTENIDO */
-main {
-  width: 90%;
-  margin: 0 auto;
-  background-color: white;
-  padding: 20px 0;
 }
 
 /* INFO */
@@ -161,7 +189,7 @@ main {
   margin-top: 15px;
 }
 
-/* TEXTO FINAL */
+/* TEXTO FINAL (DENTRO DE MAIN) */
 .mensaje-final {
   text-align: center;
   color: #113b64;
@@ -169,22 +197,28 @@ main {
   margin: 30px auto;
 }
 
+/* FOOTER (AHORA FUERA DE MAIN) */
 .frase-final {
   text-align: center;
   background-color: #113b64;
-  color: #f5b301;
+  color: white;
   font-weight: 800;
   padding: 20px 0;
   font-size: 20px;
 }
+  div1{
+    background-color: #f5b301;
+    color: #113b64;
+    padding: 2px 35px 2px 35px;
+  }
 
 
 /* ============================================================
-   INICIO DE LAS MODIFICACIONES (RESPONSIVE + HAMBURGUESA)
+   ESTILOS PARA MÓVIL (MEDIA QUERY)
 ============================================================
 */
 
-/* --- 1. Estilos para el Menú Hamburguesa (ocultos en PC) --- */
+/* --- Estilos para el Menú Hamburguesa (ocultos en PC) --- */
 .hamburger-toggle {
   display: none;
 }
@@ -198,19 +232,17 @@ main {
   z-index: 1001; 
 }
 .header-title-group {
-  display: contents; /* Se comporta como si no existiera en desktop */
+  display: contents; 
 }
 
 
-/* --- 2. Media Query: Estilos que se activan SÓLO en pantallas pequeñas --- */
+/* --- Media Query: Estilos que se activan SÓLO en pantallas pequeñas --- */
 @media (max-width: 768px) {
 
   /* --- HEADER Y MENÚ --- */
   .barra-superior {
-    /* Quitamos el justify-content, ya no es necesario */
     padding: 15px 20px;
     position: relative; 
-    /* Altura fija para centrar todo verticalmente */
     min-height: 40px; 
     display: flex;
     align-items: center;
@@ -224,7 +256,7 @@ main {
     height: 40px;
   }
   
-  /* **** MODIFICADO: Título Centrado **** */
+  /* Título Centrado */
   .header-title-group {
     display: flex;
     align-items: center;
@@ -234,19 +266,29 @@ main {
     transform: translateX(-50%); 
     z-index: 1000;
   }
-  .barra-superior h1 { 
+
+  /* **** MODIFICADO: Arreglo de H1 en Móvil **** */
+  .barra-superior h1 {
     font-size: 20px; 
     margin: 0; 
+    line-height: 1; /* Reseteamos el line-height */
+    text-align: left; /* Lo regresamos a la izquierda (dentro del flex group) */
+  }
+  /* **** MODIFICADO: Arreglo de SPAN en Móvil **** */
+  .barra-superior h1 span {
+    display: inline; /* <-- CLAVE: "LUNA" regresa a la misma línea */
+    font-size: 1em;  /* <-- CLAVE: Resetea el tamaño */
+    color: #f5b301
   }
 
-  /* **** MODIFICADO: Hamburguesa a la DERECHA **** */
+  /* Hamburguesa a la DERECHA */
   .hamburger-button {
     display: block; 
-    position: absolute; /* Lo sacamos del flujo normal */
-    right: 20px; /* Lo pegamos a la derecha */
-    top: 50%; /* Lo centramos verticalmente */
+    position: absolute; 
+    right: 20px; 
+    top: 50%; 
     transform: translateY(-50%);
-    z-index: 1001; /* Nos aseguramos que esté sobre el título */
+    z-index: 1001; 
   }
 
   /* (Estilos del menú desplegable - sin cambios) */
@@ -289,45 +331,41 @@ main {
 
   /* --- RE-ESTILOS DEL CONTENIDO --- */
   
-  /* (Frase "Ya nos conoces" - sin cambios) */
   .frase-conocenos {
     margin: 0; 
     padding: 15px 20px;
-    background-color: #e8e8e8; 
+    background-color: #3D5F85; 
     text-align: left;
   }
   .frase-conocenos h2 {
     font-size: 18px;
     margin: 0;
+    color: white;
   }
 
-  /* **** NUEVO: Hacemos que main sea un contenedor flex **** */
-  /* Esto pondrá la sección azul y amarilla una al lado de la otra */
+  /* Contenedor principal en móvil */
   main {
     width: 100%; 
     padding: 0;
     margin: 0;
-    display: flex; /* <-- NUEVO */
-    flex-wrap: wrap; /* <-- NUEVO */
+    display: flex; 
+    flex-wrap: wrap; 
   }
 
-  /* **** MODIFICADO: Sección INFO (Azul) **** */
+  /* Sección INFO (Azul) */
   .info {
     background-color: #113b64; 
     color: white; 
     padding: 20px 15px;
     margin-top: 0;
-    flex-basis: 55%; /* <-- NUEVO: Ocupa la parte izquierda */
-    box-sizing: border-box; /* <-- NUEVO: Para que el padding no afecte el tamaño */
-    /* Quitamos flex, gap, etc. que tenía antes */
+    flex-basis: 55%; 
+    box-sizing: border-box; 
   }
-
-  /* **** NUEVO: Ocultamos el logo grande **** */
+  
   .info .logo-grande {
-    display: none;
+    display: none; /* Ocultamos el logo grande */
   }
-
-  /* (Ajustes a la lista de beneficios) */
+  
   .info .lista-beneficios {
      padding: 0;
   }
@@ -354,33 +392,31 @@ main {
     transform: translateY(-50%); 
   }
 
-
-  /* **** MODIFICADO: Sección PRESTAMOS (Amarilla) **** */
+  /* Sección PRESTAMOS (Amarilla) */
   .prestamos {
     width: auto; 
-    margin: 0; /* <-- MODIFICADO: Quitamos márgenes */
+    margin: 0; 
     padding: 20px 15px;
-    border-radius: 0; /* <-- MODIFICADO: Quitamos bordes redondeados */
-    background-color: #f5b301; /* Aseguramos el color */
-    flex-basis: 45%; /* <-- NUEVO: Ocupa la parte derecha */
-    box-sizing: border-box; /* <-- NUEVO */
-    display: block; /* <-- MODIFICADO: De flex a block */
+    border-radius: 0; 
+    background-color: #f5b301; 
+    flex-basis: 45%; 
+    box-sizing: border-box; 
+    display: block; 
   }
   
-  /* **** MODIFICADO: Título "Prestamos por" **** */
   .prestamos h2 {
-    font-size: 16px; /* Más pequeño */
-    text-align: left; /* Alineado a la izquierda */
-    margin-top: 15px; /* Separación de la lista */
+    font-size: 16px; 
+    text-align: left; 
+    margin-top: 15px; 
     margin-bottom: 10px;
     color: #113b64;
-    /* Quitamos order y flex-basis */
   }
   
-  /* **** MODIFICADO: Lista de Prestamos (Amarilla) **** */
- 
+  .lista-prestamos {
+    /* Sin cambios */
+  }
   .lista-prestamos ul {
-    columns: 1; /* <-- MODIFICADO: 1 columna, como en la captura */
+    columns: 1; 
     -webkit-columns: 1;
     -moz-columns: 1;
     padding: 0;
@@ -397,21 +433,13 @@ main {
      font-size: 18px;
      color: #113b64;
   }
-
-  /* **** MODIFICADO: Ocultamos "Aparatos..." */
   .aparatos {
-    display: none; /* No está en la nueva maqueta */
+    display: none; /* Oculto en la maqueta móvil */
   }
   
-  /* **** NUEVO: Hacemos que el resto del contenido ocupe el 100% **** */
-  /* Esto asegura que el texto final y el footer vayan ABAJO de los dos bloques */
-  .mensaje-final,
-  .frase-final {
-    flex-basis: 100%; /* <-- NUEVO */
-  }
-
-  /* (Estilos de .mensaje-final y .frase-final - sin cambios) */
+  /* El contenido final ocupa el 100% de ancho */
   .mensaje-final {
+    flex-basis: 100%; 
      text-align: center;
      color: #113b64;
      font-weight: 700;
@@ -419,14 +447,22 @@ main {
      font-size: 14px;
      padding: 0 15px; 
   }
+
+  /* El footer (fuera de main) se ajusta */
   .frase-final {
+    flex-basis: 100%;
     text-align: center;
     background-color: #113b64;
-    color: #f5b301;
+    color: white;
     font-weight: 800;
     padding: 15px;
     font-size: 18px;
     line-height: 1.4; 
+  }
+  div1{
+    background-color: #f5b301;
+    color: #113b64;
+    padding: 2px 15px 2px 15px;
   }
 
 } /* --- FIN DEL @media query --- */
