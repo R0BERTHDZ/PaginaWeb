@@ -1,0 +1,55 @@
+*{
+    margin: 0;
+}
+
+header{
+    line-height: 25px; /*Separacion entre renglones*/
+    background-color: #063a74;
+    color: #FFF;
+    text-align: center;
+    padding: 12px 0px 12px 0px; /*Espacio interno entre el contenido y el borde de un elemento*/
+    width: 100%; /*Ocupa el 100% del ancho de la pantalla*/
+}
+
+header h2{
+    color: #FFD520;
+    padding-top: 15px;
+}
+
+nav{
+    background-color: #3D5F85;
+    color: #FFF;
+    padding: 10px 0px 10px 45px;
+    width: 100%;
+}
+
+main{
+    line-height: 20px;
+}
+
+main section h5{
+    background-color: #FFD520;
+    color: #063a74;
+    margin: 20px 0px 10px 0px;
+    padding: 7px 0 7px 80px;
+    border-radius: 40px;
+    font-size: medium;
+}
+
+
+
+footer{
+    background-color: #063a74;
+    padding: 10px 0px 10px 0px;
+    width: 100%;
+    text-align: center;
+    color: #FFF;
+    font-size: bold;
+}
+
+footer p1{
+    background-color: #FFD520;
+    color:#063a74;
+    padding: 2px 30px 2px 30px;
+    border-radius: 5px; 
+}

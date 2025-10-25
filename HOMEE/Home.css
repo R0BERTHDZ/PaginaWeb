@@ -1,0 +1,432 @@
+/* ESTOS SON TUS ESTILOS ORIGINALES (PARA ESCRITORIO) */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  background-color: #f2f2f2; /* gris claro */
+}
+
+/* ENCABEZADO */
+.barra-superior {
+  background-color: #113b64;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+}
+
+.barra-superior img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+}
+
+.barra-superior h1 {
+  font-size: 28px;
+  margin: 0;
+}
+
+.barra-superior span {
+  color: #f5b301;
+}
+
+/* MENÚ */
+.menu ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  background-color: #e8e8e8;
+  padding: 20px 0;
+  margin: 0;
+}
+
+.menu li {
+  margin: 0 30px;
+  font-weight: 700;
+}
+
+/* ENLACES DEL MENÚ */
+.menu a {
+  text-decoration: none;
+  color: #113b64;
+  transition: color 0.3s ease, background-color 0.3s ease;
+  padding: 8px 15px;
+  border-radius: 5px;
+}
+
+/* Cambia color al pasar el cursor */
+.menu a:hover {
+  color: #113b64;
+  background-color: #f5b301; /* Azul al pasar el mouse */
+}
+
+/* FRASE DE “¿YA NOS CONOCES?” */
+.frase-conocenos {
+  text-align: left;
+  margin: 25px 0 10px 205px;
+}
+
+.frase-conocenos h2 {
+  color: #113b64;
+  font-weight: 800;
+  font-size: 26px;
+  margin: 0;
+}
+
+/* CONTENIDO */
+main {
+  width: 90%;
+  margin: 0 auto;
+  background-color: white;
+  padding: 20px 0;
+}
+
+/* INFO */
+.info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 60px;
+  margin-top: 20px;
+}
+
+.logo-grande img {
+  width: 220px;
+  border-radius: 50%;
+  border: 3px solid #f5b301;
+}
+
+.lista-beneficios {
+  list-style: none;
+  padding: 0;
+}
+
+.lista-beneficios li {
+  margin-bottom: 10px;
+  font-weight: 600;
+  position: relative;
+  padding-left: 30px;
+}
+
+.lista-beneficios li::before {
+  content: "●";
+  color: #113b64;
+  font-size: 20px;
+  position: absolute;
+  left: 0;
+}
+
+/* PRÉSTAMOS */
+.prestamos {
+  background-color: #f5b301;
+  border-radius: 12px;
+  padding: 20px 40px;
+  margin: 30px auto;
+  width: 80%;
+}
+
+.prestamos h2 {
+  text-align: center;
+  color: #113b64;
+  margin-bottom: 15px;
+}
+
+.lista-prestamos ul {
+  list-style: none;
+  columns: 4;
+  column-gap: 30px;
+  padding: 0;
+  font-weight: 600;
+}
+
+.lista-prestamos li {
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 8px;
+}
+
+.lista-prestamos li::before {
+  content: "●";
+  color: #113b64;
+  position: absolute;
+  left: 0;
+}
+
+.aparatos {
+  text-align: center;
+  color: #113b64;
+  font-weight: bold;
+  margin-top: 15px;
+}
+
+/* TEXTO FINAL */
+.mensaje-final {
+  text-align: center;
+  color: #113b64;
+  font-weight: 700;
+  margin: 30px auto;
+}
+
+.frase-final {
+  text-align: center;
+  background-color: #113b64;
+  color: #f5b301;
+  font-weight: 800;
+  padding: 20px 0;
+  font-size: 20px;
+}
+
+
+/* ============================================================
+   INICIO DE LAS MODIFICACIONES (RESPONSIVE + HAMBURGUESA)
+============================================================
+*/
+
+/* --- 1. Estilos para el Menú Hamburguesa (ocultos en PC) --- */
+.hamburger-toggle {
+  display: none;
+}
+.hamburger-button {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 30px;
+  cursor: pointer;
+  z-index: 1001; 
+}
+.header-title-group {
+  display: contents; /* Se comporta como si no existiera en desktop */
+}
+
+
+/* --- 2. Media Query: Estilos que se activan SÓLO en pantallas pequeñas --- */
+@media (max-width: 768px) {
+
+  /* --- HEADER Y MENÚ --- */
+  .barra-superior {
+    /* Quitamos el justify-content, ya no es necesario */
+    padding: 15px 20px;
+    position: relative; 
+    /* Altura fija para centrar todo verticalmente */
+    min-height: 40px; 
+    display: flex;
+    align-items: center;
+  }
+
+  .barra-superior .logo-mini { 
+    display: block; 
+  }
+  .barra-superior img { 
+    width: 40px; 
+    height: 40px;
+  }
+  
+  /* **** MODIFICADO: Título Centrado **** */
+  .header-title-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: absolute; 
+    left: 50%;
+    transform: translateX(-50%); 
+    z-index: 1000;
+  }
+  .barra-superior h1 { 
+    font-size: 20px; 
+    margin: 0; 
+  }
+
+  /* **** MODIFICADO: Hamburguesa a la DERECHA **** */
+  .hamburger-button {
+    display: block; 
+    position: absolute; /* Lo sacamos del flujo normal */
+    right: 20px; /* Lo pegamos a la derecha */
+    top: 50%; /* Lo centramos verticalmente */
+    transform: translateY(-50%);
+    z-index: 1001; /* Nos aseguramos que esté sobre el título */
+  }
+
+  /* (Estilos del menú desplegable - sin cambios) */
+  .menu {
+    display: none; 
+    position: absolute; 
+    top: 100%; 
+    left: 0;
+    width: 100%;
+    background-color: #113b64; 
+    z-index: 999;
+  }
+  .menu ul {
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+  }
+  .menu li {
+    margin: 0;
+    border-bottom: 1px solid #2a5a8a; 
+  }
+  .menu li:last-child {
+    border-bottom: none; 
+  }
+  .menu a {
+    display: block;
+    padding: 20px;
+    text-align: center;
+    color: white; 
+    border-radius: 0; 
+  }
+  .menu a:hover {
+    background-color: #f5b301;
+    color: #113b64;
+  }
+  .hamburger-toggle:checked ~ .menu {
+    display: block;
+  }
+
+
+  /* --- RE-ESTILOS DEL CONTENIDO --- */
+  
+  /* (Frase "Ya nos conoces" - sin cambios) */
+  .frase-conocenos {
+    margin: 0; 
+    padding: 15px 20px;
+    background-color: #e8e8e8; 
+    text-align: left;
+  }
+  .frase-conocenos h2 {
+    font-size: 18px;
+    margin: 0;
+  }
+
+  /* **** NUEVO: Hacemos que main sea un contenedor flex **** */
+  /* Esto pondrá la sección azul y amarilla una al lado de la otra */
+  main {
+    width: 100%; 
+    padding: 0;
+    margin: 0;
+    display: flex; /* <-- NUEVO */
+    flex-wrap: wrap; /* <-- NUEVO */
+  }
+
+  /* **** MODIFICADO: Sección INFO (Azul) **** */
+  .info {
+    background-color: #113b64; 
+    color: white; 
+    padding: 20px 15px;
+    margin-top: 0;
+    flex-basis: 55%; /* <-- NUEVO: Ocupa la parte izquierda */
+    box-sizing: border-box; /* <-- NUEVO: Para que el padding no afecte el tamaño */
+    /* Quitamos flex, gap, etc. que tenía antes */
+  }
+
+  /* **** NUEVO: Ocultamos el logo grande **** */
+  .info .logo-grande {
+    display: none;
+  }
+
+  /* (Ajustes a la lista de beneficios) */
+  .info .lista-beneficios {
+     padding: 0;
+  }
+  .lista-beneficios li {
+    padding-left: 45px; 
+    margin-bottom: 18px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase; 
+    min-height: 30px; 
+    display: flex;
+    align-items: center;
+  }
+  .lista-beneficios li::before {
+    content: ""; 
+    background-color: #0b2a4c; 
+    border: 1px solid #fff;
+    border-radius: 50%; 
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    left: 5px;
+    top: 50%;
+    transform: translateY(-50%); 
+  }
+
+
+  /* **** MODIFICADO: Sección PRESTAMOS (Amarilla) **** */
+  .prestamos {
+    width: auto; 
+    margin: 0; /* <-- MODIFICADO: Quitamos márgenes */
+    padding: 20px 15px;
+    border-radius: 0; /* <-- MODIFICADO: Quitamos bordes redondeados */
+    background-color: #f5b301; /* Aseguramos el color */
+    flex-basis: 45%; /* <-- NUEVO: Ocupa la parte derecha */
+    box-sizing: border-box; /* <-- NUEVO */
+    display: block; /* <-- MODIFICADO: De flex a block */
+  }
+  
+  /* **** MODIFICADO: Título "Prestamos por" **** */
+  .prestamos h2 {
+    font-size: 16px; /* Más pequeño */
+    text-align: left; /* Alineado a la izquierda */
+    margin-top: 15px; /* Separación de la lista */
+    margin-bottom: 10px;
+    color: #113b64;
+    /* Quitamos order y flex-basis */
+  }
+  
+  /* **** MODIFICADO: Lista de Prestamos (Amarilla) **** */
+ 
+  .lista-prestamos ul {
+    columns: 1; /* <-- MODIFICADO: 1 columna, como en la captura */
+    -webkit-columns: 1;
+    -moz-columns: 1;
+    padding: 0;
+    margin: 0;
+    font-weight: 600;
+  }
+  .lista-prestamos li {
+    font-size: 13px;
+    padding-left: 15px; 
+    margin-bottom: 10px;
+  }
+   .lista-prestamos li::before {
+     left: 0; 
+     font-size: 18px;
+     color: #113b64;
+  }
+
+  /* **** MODIFICADO: Ocultamos "Aparatos..." */
+  .aparatos {
+    display: none; /* No está en la nueva maqueta */
+  }
+  
+  /* **** NUEVO: Hacemos que el resto del contenido ocupe el 100% **** */
+  /* Esto asegura que el texto final y el footer vayan ABAJO de los dos bloques */
+  .mensaje-final,
+  .frase-final {
+    flex-basis: 100%; /* <-- NUEVO */
+  }
+
+  /* (Estilos de .mensaje-final y .frase-final - sin cambios) */
+  .mensaje-final {
+     text-align: center;
+     color: #113b64;
+     font-weight: 700;
+     margin: 30px auto;
+     font-size: 14px;
+     padding: 0 15px; 
+  }
+  .frase-final {
+    text-align: center;
+    background-color: #113b64;
+    color: #f5b301;
+    font-weight: 800;
+    padding: 15px;
+    font-size: 18px;
+    line-height: 1.4; 
+  }
+
+} /* --- FIN DEL @media query --- */
