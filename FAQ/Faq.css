@@ -1,72 +1,76 @@
 /* =======================================================
-   ESTRUCTURA PRINCIPAL (CON STICKY FOOTER)
+   ESTRUCTURA PRINCIPAL Y FUENTES 
 ========================================================== */
 
-/* Hacemos que la página ocupe el 100% de la altura */
 html {
   height: 100%;
 }
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  /* Fuente Serif (para coincidir con Home/Us) */
+  font-family: Georgia, 'Times New Roman', Times, serif; 
   margin: 0;
-  background-color: #f2f2f2; /* gris claro */
-  
-  /* --- CLAVE PARA EL STICKY FOOTER --- */
+  background-color: #f2f2f2; /* Gris claro */
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* Ocupa al menos el 100% de la altura */
+  min-height: 100vh;
 }
-
-/* Hacemos que <main> crezca para empujar el footer hacia abajo */
-main {
-  /* --- CLAVE PARA EL STICKY FOOTER --- */
-  flex-grow: 1; /* <--- ESTA ES LA REGLA MÁGICA */
-
-  /* Estilos para el contenedor principal. */
-  width: 90%;
-  margin: 0 auto;
-  padding: 20px 0;
-}
-
 
 /* =======================================================
-   ESTILOS DE ESCRITORIO (Header y Navegación)
+   ESTILOS DE ENCABEZADO Y NAVEGACIÓN
 ========================================================== */
 
 /* ENCABEZADO */
 .barra-superior {
-  background-color: #113b64;
+  background-color: #113b64; 
   color: white;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
   padding: 10px;
+  position: relative; /* Para el botón de hamburguesa */
+  border-bottom: 4px solid #f5b301;
+
 }
 
-.barra-superior img {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  border: 2px solid #fff;
+.logo-mini {
+  display: block; /* Visible en desktop */
+}
+
+.logo-mini img {
+  width: 50px; /* Tamaño de logo en header */
+  height: 50px;
+}
+
+.header-title-group {
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
 
 .barra-superior h1 {
+  font-family: Georgia, 'Times New Roman', Times, serif;
   font-size: 28px;
   margin: 0;
-  line-height: 1.1; /* Damos un poco de espacio */
-  text-align: center;
+  line-height: 1.1;
+  text-align: left; /* Alineado al logo */
+  font-weight: 900;
 }
 
 .barra-superior h1 span {
-  display: block; /* Mueve "LUNA" a la línea de abajo */
-  font-size: 0.85em; /* La hacemos un poco más pequeña */
+  display: block;
+  font-size: 0.85em;
   color: #f5b301;
+  font-weight: 700;
 }
 
 
-/* MENÚ */
+/* MENÚ (DESKTOP) */
+.menu {
+  display: block; /* Visible en desktop */
+  position: static;
+}
 .menu ul {
   list-style: none;
   display: flex;
@@ -74,25 +78,52 @@ main {
   background-color: #e8e8e8;
   padding: 20px 0;
   margin: 0;
+  flex-direction: row; /* Horizontal en desktop */
+  gap: 20px; /* Distancia uniforme */
 }
 
 .menu li {
-  margin: 0 30px;
+  margin: 0; /* Quitamos margin, usamos gap */
   font-weight: 700;
+  border: none;
 }
 
+/* Estado normal de los botones */
 .menu a {
   text-decoration: none;
-  color: #113b64;
-  transition: color 0.3s ease, background-color 0.3s ease;
-  padding: 8px 15px;
+  color: white;
+  transition: all 0.3s ease;
   border-radius: 5px;
+  background-color: #2a5a8a; /* Fondo de botón */
+  box-shadow: 0 1px 3px rgba(0,0,0,0.15); 
+  
+  /* Para "mismo tamaño" */
+  display: inline-block;  
+  width: 180px;           /* Ancho fijo */
+  text-align: center;     
+  padding: 8px 0;         
+  box-sizing: border-box; 
 }
 
+/* Botón al pasar el cursor (Hover) */
 .menu a:hover {
   color: #113b64;
   background-color: #f5b301;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2); 
 }
+
+/* Botón "activo" (en qué página estás) para Desktop */
+.menu a.active {
+  background-color: #c3c1bb; 
+  color: #113b64;
+  box-shadow: none; 
+}
+
+
+/* --- Botón Hamburguesa (Oculto en Desktop) --- */
+.hamburger-toggle { display: none; }
+.hamburger-button { display: none; }
+
 
 /* BARRA DE TÍTULO "PREGUNTAS FRECUENTES" */
 .frase-conocenos {
@@ -102,18 +133,26 @@ main {
 
 .frase-conocenos h2 {
   color: white;
-  padding: 8px 0 8px 185px;
+  /* Centrado y con padding como en desktop */
+  width: 90%;
+  max-width: 1200px; 
+  margin: 0 auto;
+  padding: 8px 20px;
+  box-sizing: border-box;
+  
+  font-family: Georgia, 'Times New Roman', Times, serif;
   font-weight: 800;
   font-size: 26px;
-  margin: 0;
 }
 
 /* =======================================================
-   ESTILOS ESPECÍFICOS PARA PREGUNTAS FRECUENTES (FAQ - Acordeón)
+   CONTENIDO PRINCIPAL "FAQ" 
 ========================================================== */
 
 main.faq-container {
+    flex-grow: 1; /* Empuja el footer hacia abajo */
     width: 90%; 
+    max-width: 900px; /* Ancho máximo */
     margin: 20px auto; 
     padding: 0; 
     background-color: transparent; 
@@ -125,13 +164,10 @@ main.faq-container {
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     overflow: hidden; 
-    
-    /* --- LÍNEA AMARILLA EN ESCRITORIO --- */
     border: 1px solid #ddd; 
     border-bottom: 5px solid #f5b301; 
 }
 
-/* Mantenemos un margen al final del último ítem */
 .faq-item:last-child {
     margin-bottom: 20px; 
 }
@@ -152,18 +188,17 @@ main.faq-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    font-family: Arial, Helvetica, sans-serif; 
 }
 
 .faq-question:hover {
     background-color: #f0f0f0;
 }
 
-/* Estilo para la pregunta activa */
 .faq-item.active .faq-question {
     background-color: #e8e8e8;
 }
 
-/* Estilos de la flecha */
 .arrow-icon {
     font-size: 20px;
     color: #f5b301; 
@@ -189,184 +224,145 @@ main.faq-container {
     padding-bottom: 15px; 
     margin: 0;
     text-align: justify;
+    font-family: Arial, Helvetica, sans-serif; /* Fuente legible para respuestas */
 }
 
 /* =======================================================
-   ESTILOS DEL FOOTER Y MENSAJE FINAL
+   FOOTER Y MENSAJE FINAL 
 ========================================================== */
 
-/* TEXTO FINAL (DENTRO DE MAIN) */
 .mensaje-final {
   text-align: center;
   color: #113b64;
-  font-weight: 700;
-  margin: 30px auto;
+  font-weight: 800;
+  margin: 40px auto;
+  padding: 0 10%;
+  font-size: 18px;
+  background: none; /* Fondo de escritorio */
 }
 
-/* FOOTER (AHORA FUERA DE MAIN) */
 .frase-final {
   text-align: center;
   background-color: #113b64;
   color: white;
   font-weight: 800;
-  padding: 20px 0;
-  font-size: 20px;
+  padding: 25px 0;
+  font-size: 22px;
 }
-  div1{
-    background-color: #f5b301;
-    color: #113b64;
-    padding: 2px 35px 2px 35px;
-  }
+div1{
+  background-color: #f5b301;
+  color: #113b64;
+  padding: 5px 40px; 
+  border-radius: 5px;
+  display: inline-block;
+}
 
 
 /* ============================================================
    ESTILOS PARA MÓVIL (MEDIA QUERY)
 ============================================================
 */
-
-/* --- Estilos para el Menú Hamburguesa (ocultos en PC) --- */
-.hamburger-toggle {
-  display: none;
-}
-.hamburger-button {
-  display: none;
-  background: none;
-  border: none;
-  color: #f5b301;
-  font-size: 30px;
-  cursor: pointer;
-  z-index: 1001; 
-}
-.header-title-group {
-  display: contents; 
-}
-
-
-/* --- Media Query: Estilos que se activan SÓLO en pantallas pequeñas --- */
 @media (max-width: 768px) {
 
-  /* --- HEADER Y MENÚ --- */
-  .barra-superior {
-    padding: 15px 20px;
-    position: relative; 
-    min-height: 40px; 
-    display: flex;
-    align-items: center;
-  }
-
-  .barra-superior .logo-mini { 
-    display: block; 
-  }
-  .barra-superior img { 
-    width: 40px; 
-    height: 40px;
-  }
+  /* --- HEADER Y MENÚ MÓVIL --- */
+  .barra-superior { padding: 15px 20px; }
   
-  /* Título Centrado */
-  .header-title-group {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    position: absolute; 
-    left: 50%;
-    transform: translateX(-50%); 
-    z-index: 1000;
+  .logo-mini { display: block; } 
+  .logo-mini img {
+    height: 40px;
+    width: 40px;
   }
-
-  .barra-superior h1 {
+  .header-title-group { 
+    display: flex; 
+    align-items: center; 
+    position: static;
+    transform: none;
+  }
+  .barra-superior h1 { 
     font-size: 20px; 
-    margin: 0; 
-    line-height: 1; 
+    line-height: 1.1; 
     text-align: left; 
   }
-  .barra-superior h1 span {
-    display: inline; 
-    font-size: 1em; 
-    color: #f5b301
-  }
-
-  /* Hamburguesa a la DERECHA */
-  .hamburger-button {
+  .barra-superior h1 span { display: block; font-size: 0.85em; }
+  
+  /* Botón Hamburguesa */
+  .hamburger-button { 
     display: block; 
-    position: absolute; 
-    right: 20px; 
-    top: 50%; 
+    background: none; 
+    border: none; 
+    color: white; 
+    font-size: 30px; 
+    cursor: pointer; 
+    z-index: 1001;
+    position: absolute;
+    right: 20px;
+    top: 50%;
     transform: translateY(-50%);
-    z-index: 1001; 
   }
-
-  /* (Estilos del menú desplegable) */
+  /* Menú desplegable */
   .menu {
     display: none; 
-    position: absolute; 
+    position: absolute;
     top: 100%; 
     left: 0;
     width: 100%;
-    background-color: #113b64; 
+    background-color: #113b64;
     z-index: 999;
+    border-top: 1px solid #2a5a8a;
   }
   .menu ul {
     flex-direction: column;
     padding: 0;
-    margin: 0;
   }
   .menu li {
     margin: 0;
-    border-bottom: 1px solid #2a5a8a; 
-  }
-  .menu li:last-child {
-    border-bottom: none; 
+    border-bottom: 1px solid #2a5a8a;
   }
   .menu a {
     display: block;
     padding: 20px;
     text-align: center;
-    color: white; 
-    border-radius: 0; 
+    color: white;
+    /* Reseteamos los estilos de botón de desktop */
+    width: auto;
+    box-sizing: content-box;
   }
   .menu a:hover {
     background-color: #f5b301;
     color: #113b64;
   }
+  
+  /* Botón "activo" (en qué página estás) para Móvil */
+  .menu a.active {
+    background-color: #e8e8e8; /* Fondo gris claro */
+    color: #113b64;          /* Texto azul */
+  }
+
   .hamburger-toggle:checked ~ .menu {
     display: block;
   }
-
-
-  /* --- RE-ESTILOS DEL CONTENIDO --- */
   
-  .frase-conocenos {
-    margin: 0; 
-    padding: 15px 20px;
-    background-color: #3D5F85; 
-    text-align: left;
-  }
+  /* Título "Conócenos" móvil */
   .frase-conocenos h2 {
-    font-size: 18px;
+    font-size: 20px;
+    padding: 15px 20px;
+    width: auto; 
+    max-width: none;
     margin: 0;
-    padding: 0; /* Reseteamos el padding de escritorio */
-    color: white;
   }
 
-  /* Contenedor principal en móvil */
-  main {
-    width: 100%; 
-    padding: 0;
-    margin: 0;
-    display: block; 
-  }
-
-  /* Estilos específicos para FAQ en móvil */
+  /* --- CONTENIDO "FAQ" MÓVIL --- */
   main.faq-container {
         width: 100%;
         margin-top: 0;
         padding: 10px;
         box-sizing: border-box;
+        /* Reseteamos el grid de Home.html */
+        display: block;
     }
     
     .faq-item {
         margin-bottom: 10px;
-        /* --- LÍNEA AMARILLA EN MÓVIL --- */
         border-bottom: 5px solid #f5b301;
     }
     .faq-item:last-child {
@@ -387,35 +383,17 @@ main.faq-container {
         padding-bottom: 10px;
         text-align: left;
     }
-    /* FIN de Estilos específicos para FAQ en móvil */
+  /* --- FIN DE CONTENIDO "FAQ" MÓVIL --- */
 
 
-  /* El contenido final ocupa el 100% de ancho */
-  .mensaje-final {
-    flex-basis: 100%; 
-     text-align: center;
-     color: #113b64;
-     font-weight: 700;
-     margin: 30px auto;
-     font-size: 14px;
-     padding: 0 15px; 
+  /* --- FOOTER MÓVIL --- */
+  .mensaje-final { 
+    font-size: 14px; 
+    padding: 0 15px; 
+    margin: 20px auto; 
+    background-color: #f2f2f2; 
   }
-
-  /* El footer (fuera de main) se ajusta */
-  .frase-final {
-    flex-basis: 100%;
-    text-align: center;
-    background-color: #113b64;
-    color: white;
-    font-weight: 800;
-    padding: 15px;
-    font-size: 18px;
-    line-height: 1.4; 
-  }
-  div1{
-    background-color: #f5b301;
-    color: #113b64;
-    padding: 2px 15px 2px 15px;
-  }
+  .frase-final { font-size: 18px; padding: 15px; }
+  div1{ padding: 3px 20px; }
 
 } /* --- FIN DEL @media query --- */

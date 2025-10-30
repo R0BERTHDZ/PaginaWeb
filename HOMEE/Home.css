@@ -1,75 +1,68 @@
-/* =======================================================
-   ESTRUCTURA PRINCIPAL (CON STICKY FOOTER)
-========================================================== */
-
-/* Hacemos que la página ocupe el 100% de la altura */
 html {
   height: 100%;
 }
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  /* Fuente Serif como en Us.css */
+  font-family: Georgia, 'Times New Roman', Times, serif; 
   margin: 0;
-  background-color: #f2f2f2; /* gris claro */
-  
-  /* --- CLAVE PARA EL STICKY FOOTER --- */
+  background-color: #f2f2f2; /* Gris claro */
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* Ocupa al menos el 100% de la altura */
+  min-height: 100vh;
 }
-
-/* Hacemos que <main> crezca para empujar el footer hacia abajo */
-main {
-  /* --- CLAVE PARA EL STICKY FOOTER --- */
-  flex-grow: 1; /* <--- ESTA ES LA REGLA MÁGICA */
-
-  /* Tus estilos originales de main */
-  width: 90%;
-  margin: 0 auto;
-  background-color: white;
-  padding: 20px 0;
-}
-
-
-/* =======================================================
-   ESTILOS DE ESCRITORIO (TUS ESTILOS ORIGINALES)
-========================================================== */
 
 /* ENCABEZADO */
 .barra-superior {
-  background-color: #113b64;
+  background-color: #113b64; 
   color: white;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
   padding: 10px;
+  position: relative; /* Para el botón de hamburguesa */
+  border-bottom: 4px solid #f5b301;
 }
 
-.barra-superior img {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  border: 2px solid #fff;
+.logo-mini {
+  display: block; /* Visible en desktop */
 }
 
-/* **** MODIFICADO: "LUNA" ABAJO EN DESKTOP **** */
+.logo-mini img {
+  width: 50px; /* Tamaño de logo en header */
+  height: 50px;
+}
+
+.header-title-group {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
 .barra-superior h1 {
+  font-family: Georgia, 'Times New Roman', Times, serif;
   font-size: 28px;
   margin: 0;
-  line-height: 1.1; /* Damos un poco de espacio */
-  text-align: center;
+  line-height: 1.1;
+  text-align: left; /* Alineado al logo */
+  font-weight: 900;
 }
 
-/* **** NUEVO: "LUNA" ABAJO EN DESKTOP **** */
 .barra-superior h1 span {
-  display: block; /* Mueve "LUNA" a la línea de abajo */
-  font-size: 0.85em; /* La hacemos un poco más pequeña */
+  display: block;
+  font-size: 0.85em;
   color: #f5b301;
+  font-weight: 700;
 }
 
 
-/* MENÚ */
+/* MENÚ (DESKTOP) */
+.menu {
+  display: block; /* Visible en desktop */
+  position: static;
+}
+
 .menu ul {
   list-style: none;
   display: flex;
@@ -77,27 +70,52 @@ main {
   background-color: #e8e8e8;
   padding: 20px 0;
   margin: 0;
+  flex-direction: row; /* Horizontal en desktop */
+  gap: 20px; /* Define la distancia uniforme entre botones */
 }
 
 .menu li {
-  margin: 0 30px;
+  margin: 0; /* Quitamos el margin, ahora "gap" lo controla */
   font-weight: 700;
+  border: none;
 }
 
+/* Estado normal de los botones */
 .menu a {
   text-decoration: none;
-  color: #113b64;
-  transition: color 0.3s ease, background-color 0.3s ease;
-  padding: 8px 15px;
+  color: white;
+  transition: all 0.3s ease;
   border-radius: 5px;
+  background-color: #2a5a8a; /* Les da un fondo de botón */
+  box-shadow: 0 1px 3px rgba(0,0,0,0.15); /* Les da sombra para resaltar */
+  display: inline-block;  /* Permite que se aplique el ancho (width) */
+  width: 180px;           /* ¡ESTE ES EL ANCHO FIJO! (Puedes ajustarlo) */
+  text-align: center;     /* Centra el texto como "Inicio" */
+  padding: 8px 0;         /* Mantiene padding vertical, quita el horizontal */
+  box-sizing: border-box; /* Asegura que el padding no altere el ancho */
 }
 
+/* Botón al pasar el cursor (Hover) */
 .menu a:hover {
-  color: #113b64;
+  color: #2a5a8a;
   background-color: #f5b301;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2); 
 }
 
-/* FRASE DE “¿YA NOS CONOCES?” */
+/* Botón "activo" (en qué página estás) para Desktop */
+.menu a.active {
+  background-color: #c3c1bb; 
+  color: #113b64;
+  box-shadow: none; 
+}
+
+
+/* --- Botón Hamburguesa (Oculto en Desktop) --- */
+.hamburger-toggle { display: none; }
+.hamburger-button { display: none; }
+
+
+/* BARRA DE TÍTULO "NOSOTROS" */
 .frase-conocenos {
   text-align: left;
   background-color: #3D5F85;
@@ -105,364 +123,355 @@ main {
 
 .frase-conocenos h2 {
   color: white;
-  padding: 8px 0 8px 185px;
+  /* Centrado y con padding como en desktop */
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 8px 20px;
+  box-sizing: border-box;
+  
+  font-family: Georgia, 'Times New Roman', Times, serif;
   font-weight: 800;
   font-size: 26px;
-  margin: 0;
 }
 
-/* INFO */
-.info {
+/* =======================================================
+   CONTENIDO PRINCIPAL "HOME" (ADAPTADO A DESKTOP-FIRST)
+========================================================== */
+
+main {
+  flex-grow: 1;
+  /* --- ESTILOS DESKTOP --- */
+  display: block;
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: white; /* Fondo blanco para Home */
+  padding: 20px 0;
+}
+
+/* --- ESTILOS DESKTOP --- */
+section.info {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 60px;
   margin-top: 20px;
-}
-
-.logo-grande img {
-  width: 220px;
-  border-radius: 50%;
-  border: 3px solid #f5b301;
+  padding: 0 20px;
+  box-sizing: border-box;
 }
 
 .lista-beneficios {
   list-style: none;
   padding: 0;
+  margin: 0;
+  flex-basis: 70%; /* Ancho desktop */
 }
 
 .lista-beneficios li {
-  margin-bottom: 10px;
-  font-weight: 600;
-  position: relative;
-  padding-left: 30px;
+  position: relative; /* Para el pseudo-elemento */
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  color: #113b64;
+  font-weight: 900;
+  font-size: 16px;
+  line-height: 1.3;
+  padding-left: 30px; /* Espacio para el punto */
 }
-
 .lista-beneficios li::before {
+  /* Punto simple en desktop */
   content: "●";
   color: #113b64;
   font-size: 20px;
   position: absolute;
   left: 0;
+  top: 0;
+  /* Resetea estilos de icono móvil */
+  background: none;
+  border: none;
+  width: auto;
+  height: auto;
+  border-radius: 0;
+  margin-right: 0;
 }
 
-/* PRÉSTAMOS */
+.logo-grande {
+  flex-basis: 30%; /* Ancho desktop */
+  text-align: right;
+}
+.logo-grande img {
+  width: 100%;
+  max-width: 220px; /* Tamaño desktop */
+  height: auto;
+  border-radius: 50%;
+  border: 3px solid #f5b301;
+}
+
 .prestamos {
+  display: block;
   background-color: #f5b301;
   border-radius: 12px;
-  padding: 20px 40px;
+  padding: 20px 20px;
   margin: 30px auto;
-  width: 80%;
+  width: 70%;
+  box-sizing: border-box;
 }
-
 .prestamos h2 {
   text-align: center;
   color: #113b64;
+  margin-top: 0;
   margin-bottom: 15px;
+  font-size: 24px;
 }
-
 .lista-prestamos ul {
+  /* 4 columnas en desktop */
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
   list-style: none;
-  columns: 4;
-  column-gap: 30px;
   padding: 0;
+  margin: 0;
   font-weight: 600;
+  font-size: 16px;
+  color: #113b64;
 }
-
 .lista-prestamos li {
   position: relative;
-  padding-left: 20px;
-  margin-bottom: 8px;
+  padding-left: 30px;
+  margin-bottom: 5px;
 }
-
 .lista-prestamos li::before {
   content: "●";
   color: #113b64;
   position: absolute;
   left: 0;
+  top: 0;
 }
-
 .aparatos {
   text-align: center;
   color: #113b64;
-  font-weight: bold;
+  font-weight: 900;
   margin-top: 15px;
+  margin-bottom: 5px;
+  font-size: 16px;
 }
 
-/* TEXTO FINAL (DENTRO DE MAIN) */
+/* =======================================================
+   FOOTER Y MENSAJE FINAL 
+========================================================== */
+
 .mensaje-final {
   text-align: center;
   color: #113b64;
-  font-weight: 700;
-  margin: 30px auto;
+  font-weight: 800;
+  margin: 40px auto;
+  padding: 0 10%;
+  font-size: 18px;
+  background: none; /* Fondo de escritorio */
 }
 
-/* FOOTER (AHORA FUERA DE MAIN) */
 .frase-final {
   text-align: center;
   background-color: #113b64;
   color: white;
   font-weight: 800;
-  padding: 20px 0;
-  font-size: 20px;
+  padding: 25px 0;
+  font-size: 22px;
 }
-  div1{
-    background-color: #f5b301;
-    color: #113b64;
-    padding: 2px 35px 2px 35px;
-  }
+div1{
+  background-color: #f5b301;
+  color: #113b64;
+  padding: 5px 40px; 
+  border-radius: 5px;
+  display: inline-block;
+}
 
 
 /* ============================================================
    ESTILOS PARA MÓVIL (MEDIA QUERY)
 ============================================================
 */
-
-/* --- Estilos para el Menú Hamburguesa (ocultos en PC) --- */
-.hamburger-toggle {
-  display: none;
-}
-.hamburger-button {
-  display: none;
-  background: none;
-  border: none;
-  color: white;
-  font-size: 30px;
-  cursor: pointer;
-  z-index: 1001; 
-}
-.header-title-group {
-  display: contents; 
-}
-
-
-/* --- Media Query: Estilos que se activan SÓLO en pantallas pequeñas --- */
 @media (max-width: 768px) {
 
-  /* --- HEADER Y MENÚ --- */
-  .barra-superior {
-    padding: 15px 20px;
-    position: relative; 
-    min-height: 40px; 
-    display: flex;
-    align-items: center;
-  }
-
-  .barra-superior .logo-mini { 
-    display: block; 
-  }
-  .barra-superior img { 
-    width: 40px; 
-    height: 40px;
-  }
+  /* --- HEADER Y MENÚ MÓVIL --- */
+  .barra-superior { padding: 15px 20px; }
   
-  /* Título Centrado */
-  .header-title-group {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    position: absolute; 
-    left: 50%;
-    transform: translateX(-50%); 
-    z-index: 1000;
+  .logo-mini { display: block; } 
+  .logo-mini img {
+    height: 40px;
+    width: 40px;
   }
-
-  /* **** MODIFICADO: Arreglo de H1 en Móvil **** */
-  .barra-superior h1 {
+  .header-title-group { 
+    display: flex; 
+    align-items: center; 
+    position: static;
+    transform: none;
+  }
+  .barra-superior h1 { 
     font-size: 20px; 
-    margin: 0; 
-    line-height: 1; /* Reseteamos el line-height */
-    text-align: left; /* Lo regresamos a la izquierda (dentro del flex group) */
+    line-height: 1.1; 
+    text-align: left; 
   }
-  /* **** MODIFICADO: Arreglo de SPAN en Móvil **** */
-  .barra-superior h1 span {
-    display: inline; /* <-- CLAVE: "LUNA" regresa a la misma línea */
-    font-size: 1em;  /* <-- CLAVE: Resetea el tamaño */
-    color: #f5b301
-  }
-
-  /* Hamburguesa a la DERECHA */
-  .hamburger-button {
+  .barra-superior h1 span { display: block; font-size: 0.85em; }
+  
+  /* Botón Hamburguesa */
+  .hamburger-button { 
     display: block; 
-    position: absolute; 
-    right: 20px; 
-    top: 50%; 
+    background: none; 
+    border: none; 
+    color: white; 
+    font-size: 30px; 
+    cursor: pointer; 
+    z-index: 1001;
+    position: absolute;
+    right: 20px;
+    top: 50%;
     transform: translateY(-50%);
-    z-index: 1001; 
   }
-
-  /* (Estilos del menú desplegable - sin cambios) */
+  /* Menú desplegable */
   .menu {
     display: none; 
-    position: absolute; 
+    position: absolute;
     top: 100%; 
     left: 0;
     width: 100%;
-    background-color: #113b64; 
+    background-color: #113b64;
     z-index: 999;
+    border-top: 1px solid #2a5a8a;
   }
   .menu ul {
     flex-direction: column;
     padding: 0;
-    margin: 0;
   }
   .menu li {
     margin: 0;
-    border-bottom: 1px solid #2a5a8a; 
-  }
-  .menu li:last-child {
-    border-bottom: none; 
+    border-bottom: 1px solid #2a5a8a;
   }
   .menu a {
     display: block;
     padding: 20px;
     text-align: center;
-    color: white; 
-    border-radius: 0; 
+    color: white;
+    width: auto;
+    box-sizing: content-box;
   }
   .menu a:hover {
     background-color: #f5b301;
     color: #113b64;
   }
+  
+  /* Botón "activo" (en qué página estás) para Móvil */
+  .menu a.active {
+    background-color: #e8e8e8; /* Fondo gris claro */
+    color: #113b64;          /* Texto azul */
+  }
+
   .hamburger-toggle:checked ~ .menu {
     display: block;
   }
-
-
-  /* --- RE-ESTILOS DEL CONTENIDO --- */
   
-  .frase-conocenos {
-    margin: 0; 
-    padding: 15px 20px;
-    background-color: #3D5F85; 
-    text-align: left;
-  }
+  /* Título "Conócenos" móvil */
   .frase-conocenos h2 {
-    font-size: 18px;
+    font-size: 20px;
+    padding: 15px 20px;
+    width: auto; 
+    max-width: none;
     margin: 0;
-    color: white;
   }
 
-  /* Contenedor principal en móvil */
+  /* --- CONTENIDO "HOME" MÓVIL --- */
   main {
-    width: 100%; 
-    padding: 0;
+    width: 100%;
     margin: 0;
-    display: flex; 
-    flex-wrap: wrap; 
+    background-color: white;
+    padding: 20px 15px;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 40% 60%;
+    gap: 0px 15px; 
+  }
+  
+  section.info {
+    display: contents;
+    margin: 0;
+    padding: 0;
   }
 
-  /* Sección INFO (Azul) */
-  .info {
-    background-color: #113b64; 
-    color: white; 
-    padding: 20px 15px;
-    margin-top: 0;
-    flex-basis: 55%; 
-    box-sizing: border-box; 
-  }
-  
-  .info .logo-grande {
-    display: none; /* Ocultamos el logo grande */
-  }
-  
-  .info .lista-beneficios {
-     padding: 0;
+  .lista-beneficios {
+    grid-column: 1 / 2;
+    grid-row: 1 / 3; /* Ocupa 2 filas */
+    flex-basis: auto; 
+    align-self: center; 
   }
   .lista-beneficios li {
-    padding-left: 45px; 
-    margin-bottom: 18px;
-    font-size: 12px;
-    font-weight: 700;
-    text-transform: uppercase; 
-    min-height: 30px; 
-    display: flex;
-    align-items: center;
+    margin-bottom: 20px;
+    color: #113b64;
+    font-weight: 900;
+    font-size: 14px;
+    line-height: 1.3;
+    padding-left: 0; 
   }
   .lista-beneficios li::before {
-    content: ""; 
-    background-color: #0b2a4c; 
-    border: 1px solid #fff;
-    border-radius: 50%; 
-    width: 30px;
-    height: 30px;
-    position: absolute;
-    left: 5px;
-    top: 50%;
-    transform: translateY(-50%); 
+    content: "";
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    min-width: 35px;
+    min-height: 35px;
+    background-color: #e8f0f8;
+    border: 2px solid #113b64;
+    border-radius: 50%;
+    margin-right: 10px;
+    position: static;
+    font-size: inherit;
+    color: inherit;
   }
 
-  /* Sección PRESTAMOS (Amarilla) */
+  .logo-grande {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2; /* Fila 1 */
+    text-align: center;
+    flex-basis: auto; 
+  }
+  .logo-grande img {
+    max-width: 100px; /* Tu ajuste de tamaño */
+  }
+
   .prestamos {
-    width: auto; 
-    margin: 0; 
-    padding: 20px 15px;
-    border-radius: 0; 
-    background-color: #f5b301; 
-    flex-basis: 45%; 
-    box-sizing: border-box; 
-    display: block; 
+    grid-column: 2 / 3;
+    grid-row: 2 / 3; /* Fila 2 */
+    border-radius: 20px;
+    padding: 15px;
+    margin: 0;
+    width: 100%;
   }
-  
   .prestamos h2 {
-    font-size: 16px; 
-    text-align: left; 
-    margin-top: 15px; 
-    margin-bottom: 10px;
-    color: #113b64;
-  }
-  
-  .lista-prestamos {
-    /* Sin cambios */
+    font-size: 16px;
   }
   .lista-prestamos ul {
-    columns: 1; 
-    -webkit-columns: 1;
-    -moz-columns: 1;
-    padding: 0;
-    margin: 0;
-    font-weight: 600;
+    grid-template-columns: 1fr 1fr;
+    gap: 5px 10px;
+    font-size: 13px;
   }
   .lista-prestamos li {
+    padding-left: 15px;
     font-size: 13px;
-    padding-left: 15px; 
-    margin-bottom: 10px;
-  }
-   .lista-prestamos li::before {
-     left: 0; 
-     font-size: 18px;
-     color: #113b64;
   }
   .aparatos {
-    display: none; /* Oculto en la maqueta móvil */
+    font-size: 13px;
   }
-  
-  /* El contenido final ocupa el 100% de ancho */
-  .mensaje-final {
-    flex-basis: 100%; 
-     text-align: center;
-     color: #113b64;
-     font-weight: 700;
-     margin: 30px auto;
-     font-size: 14px;
-     padding: 0 15px; 
-  }
+  /* --- FIN DE CONTENIDO "HOME" MÓVIL --- */
 
-  /* El footer (fuera de main) se ajusta */
-  .frase-final {
-    flex-basis: 100%;
-    text-align: center;
-    background-color: #113b64;
-    color: white;
-    font-weight: 800;
-    padding: 15px;
-    font-size: 18px;
-    line-height: 1.4; 
+
+  /* --- FOOTER MÓVIL --- */
+  .mensaje-final { 
+    font-size: 14px; 
+    padding: 0 15px; 
+    margin: 20px auto; 
+    background-color: #f2f2f2; 
   }
-  div1{
-    background-color: #f5b301;
-    color: #113b64;
-    padding: 2px 15px 2px 15px;
-  }
+  .frase-final { font-size: 18px; padding: 15px; }
+  div1{ padding: 3px 20px; }
 
 } /* --- FIN DEL @media query --- */
