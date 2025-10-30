@@ -133,6 +133,17 @@ body {
   font-family: Georgia, 'Times New Roman', Times, serif;
   font-weight: 800;
   font-size: 26px;
+
+  padding: 8px 0 8px ;
+  background-color: #3D5F85;
+  color: white;
+}
+
+.frase-conocenos h2 {
+
+  font-weight: 800;
+  font-size: 26px;
+  margin: 0px 0px 0 180px;
 }
 
 /* =======================================================
@@ -257,9 +268,9 @@ section.info {
   font-size: 16px;
 }
 
-/* =======================================================
+/* 
    FOOTER Y MENSAJE FINAL 
-========================================================== */
+*/
 
 .mensaje-final {
   text-align: center;
@@ -288,11 +299,11 @@ div1{
 }
 
 
-/* ============================================================
+/* 
    ESTILOS PARA MÓVIL (MEDIA QUERY)
-============================================================
 */
 @media (max-width: 768px) {
+
 
   /* --- HEADER Y MENÚ MÓVIL --- */
   .barra-superior { padding: 15px 20px; }
@@ -470,8 +481,25 @@ div1{
     padding: 0 15px; 
     margin: 20px auto; 
     background-color: #f2f2f2; 
+
+  .mensaje-final {
+     text-align: center;
+     color: #113b64;
+     font-weight: 700;
+     margin: 30px auto;
+     font-size: 14px;
+     padding: 0 15px; 
+  }
+  .frase-final {
+    text-align: center;
+    background-color: green;
+    color: red;
+    font-weight: 800;
+    padding: 15px;
+    font-size: 18px;
+    line-height: 1.4; 
   }
   .frase-final { font-size: 18px; padding: 15px; }
   div1{ padding: 3px 20px; }
 
-} /* --- FIN DEL @media query --- */
+} }
