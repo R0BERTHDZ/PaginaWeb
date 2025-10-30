@@ -97,18 +97,17 @@ body {
 
 /* Botón al pasar el cursor (Hover) */
 .menu a:hover {
-  color: #2a5a8a;
+  color: #113b64;
   background-color: #f5b301;
   box-shadow: 0 2px 5px rgba(0,0,0,0.2); 
 }
-
+/**/
 /* Botón "activo" (en qué página estás) para Desktop */
 .menu a.active {
   background-color: #c3c1bb; 
   color: #113b64;
   box-shadow: none; 
 }
-
 
 /* --- Botón Hamburguesa (Oculto en Desktop) --- */
 .hamburger-toggle { display: none; }

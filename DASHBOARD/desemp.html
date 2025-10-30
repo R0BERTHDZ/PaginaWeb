@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Refrendo - Panel de Control</title>
-  <link rel="stylesheet" href="ref.css">
+  <title>Desempeño - Panel de Control</title>
+  <link rel="stylesheet" href="ref.css"> 
 </head>
 <body>
 
@@ -22,10 +22,10 @@
         <li><a href="/DASHBOARD/nuev_emp.html">
           <span class="icon">&#10133;</span> Nuevo Empeño
         </a></li>
-        <li><a href="/DASHBOARD/ref.html" class="active">
+        <li><a href="/DASHBOARD/ref.html">
           <span class="icon">&#128260;</span> Refrendo
         </a></li>
-        <li><a href="desemp.html">
+        <li><a href="desemp.html" class="active">
           <span class="icon">&#9989;</span> Desempeño
         </a></li>
         <li><a href="/DASHBOARD/clientes.html">
@@ -48,7 +48,7 @@
     
     <header class="main-header">
       <button id="menu-toggle" class="hamburger-button">&#9776;</button>
-      <h1>Registrar Refrendo</h1>
+      <h1>Registrar Desempeño</h1>
       <div class="user-info">
         <span>Bienvenido, <strong>Dueño</strong></span>
       </div>
@@ -71,13 +71,14 @@
           </form>
         </div>
       </div>
-      <div id="refrendo-details">
+
+      <div id="desempeno-details">
         <h3>
           <span class="icon">&#128100;</span> Datos del Empeño 
           <span class="folio">(Folio: 12345)</span>
         </h3>
         
-        <div class="refrendo-details-content">
+        <div class="desempeno-details-content">
           <div class="form-grid">
             <div class="input-group">
               <label>Cliente</label>
@@ -113,7 +114,11 @@
           
           <div class="payment-summary">
             <div class="summary-item">
-              <span>Monto Refrendo (Base):</span>
+              <span>Monto del Préstamo (Capital):</span>
+              <span>$5,000.00</span>
+            </div>
+            <div class="summary-item">
+              <span>Monto Refrendo (Interés):</span>
               <span>$500.00</span>
             </div>
             <div class="summary-item info">
@@ -132,14 +137,14 @@
               <span>(Día 6: $50.00 + Día 7: $50.00)</span>
             </div>
             <div class="summary-total">
-              <span>TOTAL A PAGAR HOY:</span>
-              <span>$600.00</span>
+              <span>TOTAL A PAGAR (DESEMPEÑO):</span>
+              <span>$5,600.00</span>
             </div>
           </div>
 
           <div class="form-actions">
             <button type="button" class="btn btn-secondary">Cancelar</button>
-            <button type="submit" class="btn btn-primary">Confirmar Refrendo y Pagar</button>
+            <button type="submit" class="btn btn-primary">Confirmar Desempeño y Entregar</button>
           </div>
         </div> </div>
 
